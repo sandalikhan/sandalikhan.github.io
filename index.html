@@ -122,6 +122,23 @@
             position: relative;
             overflow: hidden;
         }
+        .profile-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: var(--transition);
+        }
+        .profile-img.blurred {
+            filter: blur(8px);
+        }
+        
+        .stats-panel {
+            position: relative;
+            z-index: 2;
+        }
         .hero-right::before {
             content: '';
             position: absolute;
@@ -952,6 +969,18 @@
             else { scrollTopBtn.classList.remove('show'); }
         });
         scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            // Image blur on stats panel hover
+            const profileImg = document.querySelector('.profile-img');
+            const statsPanel = document.querySelector('.stats-panel');
+        
+            if (profileImg && statsPanel) {
+                statsPanel.addEventListener('mouseenter', () => {
+                    profileImg.classList.add('blurred');
+                });
+                statsPanel.addEventListener('mouseleave', () => {
+                    profileImg.classList.remove('blurred');
+                });
+            }
     </script>
 </body>
 </html>
