@@ -3,981 +3,752 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandali Khan | Strategy & Business Consultant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Sandali Khan | Strategy Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        :root {
-            --accent: #7c3aed;
-            --accent-dark: #5b21b6;
-            --accent-light: #ede9fe;
-            --gold: #d4af37;
-            --gold-light: #fef9ee;
-            --dark: #0f0a1e;
-            --dark-2: #1a1030;
-            --white: #ffffff;
-            --off-white: #fafaf9;
-            --text: #1c1c2e;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --shadow: 0 4px 24px rgba(124, 58, 237, 0.10);
-            --shadow-lg: 0 12px 40px rgba(124, 58, 237, 0.18);
-            --radius: 20px;
-            --radius-sm: 12px;
-            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        /* ===== FONTS ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background: var(--off-white);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; line-height: 1.08; letter-spacing: -2px; }
-        h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.2; }
-        h3 { font-size: 1.2rem; font-weight: 700; }
-        h4 { font-size: 1rem; font-weight: 700; }
-
-        /* ===== NAVIGATION ===== */
-        nav {
+        /* ===== NAVBAR ===== */
+        .navbar {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 0 4%;
-            height: 68px;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 5%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+            align-items: center;
         }
-        .nav-logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.5px; color: var(--dark); }
-        .nav-logo .dot { color: var(--accent); }
-        .nav-links { display: flex; gap: 0.2rem; }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #7c3aed;
+        }
+
+        .navbar .logo span {
+            color: #1e293b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
         .nav-links a {
             text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 0.4rem 0.85rem;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            transition: var(--transition);
+            color: #475569;
+            font-weight: 500;
+            transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--accent); background: var(--accent-light); }
-        .nav-cta { background: var(--accent) !important; color: white !important; border-radius: 50px !important; }
-        .nav-cta:hover { background: var(--accent-dark) !important; }
+
+        .nav-links a:hover {
+            color: #7c3aed;
+        }
 
         .hamburger {
             display: none;
             flex-direction: column;
             gap: 5px;
-            background: none;
-            border: none;
             cursor: pointer;
-            padding: 4px;
         }
-        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 4px; transition: var(--transition); }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 68px; left: 0; right: 0;
-            background: white;
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border);
-            z-index: 999;
-            flex-direction: column;
-            gap: 0.25rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; padding: 0.75rem 1rem; border-radius: 10px; transition: var(--transition); }
-        .mobile-menu a:hover { background: var(--accent-light); color: var(--accent); }
 
-        /* ===== HERO (SPLIT SCREEN) ===== */
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1e293b;
+            border-radius: 2px;
+        }
+
+        /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
         }
+
         .hero-left {
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 9rem 5% 5rem 8%;
         }
-        .hero-right {
-            background: var(--dark);
-            display: flex;
-            align-items: center; /* Vertical center */
-            justify-content: flex-start; /* Move stats to the left */
-            padding: 0 5%; /* Add space from the edge */
-            position: relative;
-            overflow: hidden;
-        }
-        .profile-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            filter: none !important; /* Forces image to stay clear */
-        }
-        .profile-img.blurred {
-            filter: blur(8px);
-        }
-        
-        .stats-panel {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 320px; /* Slightly slimmer */
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.4); /* Darker transparent */
-            backdrop-filter: blur(12px); /* Only blurs the glass card background, not your face */
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .hero-right::before {
-            content: '';
-            position: absolute;
-            top: -20%; left: -20%;
-            width: 140%; height: 140%;
-            background: radial-gradient(ellipse at 40% 50%, rgba(124, 58, 237, 0.28) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .hero-right::after {
-            content: '';
-            position: absolute;
-            bottom: -10%; right: -10%;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+
+        .hero-left h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
         }
 
-        /* ===== PROFILE PLACEHOLDER ===== */
-        .profile-placeholder {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
+        .hero-left h1 .highlight {
+            color: #7c3aed;
+        }
+
+        .hero-left .tagline {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-left .description {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
             gap: 1rem;
         }
-        .placeholder-avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(124,58,237,0.1);
-            border: 2px dashed rgba(124,58,237,0.4);
+
+        .btn-primary {
+            background: #7c3aed;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #6d28d9;
+        }
+
+        .btn-secondary {
+            border: 2px solid #cbd5e1;
+            color: #475569;
+            padding: 0.9rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+        }
+
+        .hero-right {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: visible;
         }
-        .placeholder-label {
-            color: rgba(255,255,255,0.28);
-            font-size: 0.72rem;
+
+        .profile-img {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+
+        .stats-card {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e2e8f0;
+            width: 260px;
+            z-index: 2;
+        }
+
+        .stats-card h3 {
+            color: #d97706;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2.5px;
-            text-align: center;
-        }
-        .placeholder-hint {
-            color: rgba(255,255,255,0.14);
-            font-size: 0.62rem;
-            text-align: center;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-light);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.72rem;
+        .stat-item {
+            margin-bottom: 1rem;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: 1.75rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1.75rem;
+            color: #1e293b;
         }
-        .hero-badge::before { content: '●'; font-size: 0.5rem; }
 
-        .hero-name { color: var(--dark); margin-bottom: 0.75rem; }
-        .hero-name span {
-            display: block;
-            background: linear-gradient(135deg, var(--accent) 0%, #a855f7 50%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
         }
-        .hero-title { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.75rem; font-weight: 400; }
-        .hero-summary { font-size: 0.93rem; color: var(--text-muted); max-width: 460px; margin-bottom: 2.25rem; line-height: 1.85; }
-        .hero-summary strong { color: var(--text); }
-
-        .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.25rem; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 700; font-size: 0.85rem;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer; border: none;
-        }
-        .btn-purple { background: var(--accent); color: white; }
-        .btn-purple:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35); }
-        .btn-outline { border: 2px solid rgba(0,0,0,0.15); color: var(--text); background: transparent; }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-        .hero-contact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.82rem; color: var(--text-muted); }
-        .hero-contact a { color: var(--text-muted); text-decoration: none; transition: var(--transition); }
-        .hero-contact a:hover { color: var(--accent); }
-
-        .stats-panel { position: relative; z-index: 2; width: 100%; max-width: 360px; padding: 2rem; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
-        .stats-label { color: var(--gold); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 2rem; }
-        .stat-row {
-            display: flex; align-items: flex-end; gap: 1.5rem;
-            margin-bottom: 2rem; padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .stat-row:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
-        .stat-num { font-size: 2.8rem; font-weight: 900; line-height: 1; color: white; letter-spacing: -2px; flex-shrink: 0; }
-        .stat-num em { color: var(--gold); font-style: normal; }
-        .stat-info .stat-title { font-size: 0.83rem; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.3; margin-bottom: 0.2rem; }
-        .stat-info .stat-sub { font-size: 0.7rem; color: rgba(255,255,255,0.35); }
-        .panel-tag { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin: 0.2rem; }
-
-        /* ===== SECTIONS ===== */
-        section { padding: 6rem 8%; }
-        .container { max-width: 1100px; margin: 0 auto; }
-
-        .section-header { margin-bottom: 3.5rem; }
-        .eyebrow { display: inline-block; color: var(--accent); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.6rem; }
-        .section-header h2 { color: var(--dark); }
-        .section-header p { margin-top: 0.75rem; color: var(--text-muted); font-size: 0.93rem; max-width: 600px; }
-        .title-line { width: 48px; height: 4px; background: var(--gold); border-radius: 4px; margin-top: 0.75rem; }
 
         /* ===== ABOUT ===== */
-        #about { background: white; }
-        .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5rem; align-items: center; }
-        .about-text p { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 1rem; }
-        .about-text strong { color: var(--text); }
-        .about-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .kpi-box { background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem 1rem; text-align: center; transition: var(--transition); }
-        .kpi-box:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
-        .kpi-box .num { font-size: 1.6rem; font-weight: 900; color: var(--accent); }
-        .kpi-box .desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.3; }
+        .about {
+            padding: 5rem 8%;
+            background: #f8fafc;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .about h2 span {
+            color: #7c3aed;
+        }
+
+        .about-grid {
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-text {
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .about-details h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .detail-item .icon {
+            color: #7c3aed;
+            font-weight: 700;
+        }
+
+        .detail-item .label {
+            font-weight: 600;
+            color: #1e293b;
+            min-width: 100px;
+        }
+
+        .detail-item .value {
+            color: #475569;
+        }
 
         /* ===== SKILLS ===== */
-        #skills { background: var(--dark); }
-        #skills .section-header h2 { color: white; }
-        #skills .section-header p { color: rgba(255,255,255,0.42); }
-        .skills-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; }
-        .skill-group { margin-bottom: 2.5rem; }
-        .skill-group:last-child { margin-bottom: 0; }
-        .skill-group-label { color: var(--gold); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(212,175,55,0.2); }
-        .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .pill { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); color: rgba(255,255,255,0.8); padding: 0.45rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; transition: var(--transition); cursor: default; }
-        .pill:hover { background: var(--accent); border-color: var(--accent); color: white; transform: translateY(-1px); }
-        .pill.tech { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.2); color: rgba(255,255,255,0.85); }
-        .pill.tech:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+        .skills {
+            padding: 5rem 8%;
+        }
 
-        /* ===== EXPERIENCE (TIMELINE) ===== */
-        #experience { background: var(--off-white); }
-        .timeline { position: relative; padding-left: 2rem; }
-        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--gold), transparent); }
-        .timeline-item { position: relative; padding: 0 0 3rem 2.5rem; }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-dot { position: absolute; left: -2.65rem; top: 0.4rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 3px solid var(--off-white); box-shadow: 0 0 0 2px var(--accent); }
-        .exp-card { background: white; border-radius: var(--radius); padding: 2rem 2rem 1.5rem; border: 1px solid var(--border); transition: var(--transition); }
-        .exp-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateX(4px); }
-        .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
-        .exp-role { font-size: 1.1rem; font-weight: 800; color: var(--dark); }
-        .exp-company { color: var(--accent); font-weight: 600; font-size: 0.88rem; margin-top: 0.1rem; }
-        .exp-date { background: var(--accent-light); color: var(--accent); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 50px; white-space: nowrap; }
-        .exp-bullets { margin-top: 1rem; list-style: none; }
-        .exp-bullets li { position: relative; padding-left: 1.5rem; margin-bottom: 0.65rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
-        .exp-bullets li::before { content: '▶'; position: absolute; left: 0; color: var(--gold); font-size: 0.52rem; top: 0.42rem; }
-        .exp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
-        .exp-tag { background: var(--off-white); color: var(--text-muted); font-size: 0.63rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .skills h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
 
-        /* ===== PROJECTS ===== */
-        #projects { background: white; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; }
-        .project-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: var(--transition); background: var(--off-white); }
-        .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
-        .project-header { background: var(--dark); padding: 2.5rem 2rem; display: flex; align-items: center; justify-content: center; min-height: 130px; position: relative; overflow: hidden; }
-        .project-header::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.22), transparent 70%); }
-        .project-icon-wrap { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; position: relative; z-index: 1; }
-        .project-body { padding: 1.75rem; }
-        .project-client { font-size: 0.65rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.4rem; }
-        .project-body h3 { font-size: 1.05rem; color: var(--dark); margin-bottom: 0.75rem; }
-        .project-body p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1rem; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-        .project-tag { background: var(--accent-light); color: var(--accent-dark); font-size: 0.6rem; font-weight: 700; padding: 0.22rem 0.6rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .skills h2 span {
+            color: #7c3aed;
+        }
 
-        /* ===== EDUCATION ===== */
-        #education { background: var(--off-white); }
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .edu-card { background: white; border-radius: var(--radius); padding: 2rem; border: 1px solid var(--border); transition: var(--transition); }
-        .edu-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
-        .edu-badge { display: inline-block; background: var(--gold); color: var(--dark); font-size: 0.62rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
-        .edu-degree { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.2rem; }
-        .edu-school { color: var(--accent); font-weight: 600; font-size: 0.88rem; }
-        .edu-year { font-size: 0.75rem; color: var(--text-muted); margin: 0.2rem 0 0.75rem; }
-        .edu-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+        .skills-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
 
-        /* ===== CERTS & LEADERSHIP ===== */
-        #certsleadership { background: white; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .cert-card { background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.2rem 1rem; text-align: center; transition: var(--transition); }
-        .cert-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(212,175,55,0.15); }
-        .cert-icon { font-size: 1.75rem; margin-bottom: 0.4rem; }
-        .cert-name { font-size: 0.8rem; font-weight: 700; color: var(--dark); }
-        .cert-issuer { font-size: 0.67rem; color: var(--text-muted); margin-top: 0.1rem; }
-        .leadership-list { list-style: none; }
-        .leadership-list li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text-muted); }
-        .leadership-list li:last-child { border-bottom: none; }
-        .leadership-list .li-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
-        .leadership-list strong { color: var(--text); display: block; font-size: 0.9rem; }
+        .skills-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
 
-        /* ===== WHY INTERVIEW ME ===== */
-        #why { background: var(--dark); }
-        #why .section-header h2 { color: white; }
-        #why .section-header p { color: rgba(255,255,255,0.42); }
-        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-        .why-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 2rem 1.75rem; transition: var(--transition); }
-        .why-card:hover { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.4); transform: translateY(-5px); }
-        .why-emoji { font-size: 2.25rem; margin-bottom: 1rem; display: block; }
-        .why-card h4 { color: white; font-size: 1rem; margin-bottom: 0.4rem; }
-        .why-card p { color: rgba(255,255,255,0.5); font-size: 0.82rem; line-height: 1.6; }
-        .avail-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-        .avail-tag { padding: 0.6rem 1.4rem; border-radius: 50px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; }
-        .avail-tag.green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #34d399; }
-        .avail-tag.purple { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: #a78bfa; }
-        .avail-tag.gold { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); color: var(--gold); }
+        .skill-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -8px rgba(124, 58, 237, 0.15);
+        }
+
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .experience {
+            padding: 5rem 8%;
+            background: #f8fafc;
+        }
+
+        .experience h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience h2 span {
+            color: #7c3aed;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 2.5rem;
+            border-left: 3px solid #e2e8f0;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: #7c3aed;
+            border-radius: 50%;
+        }
+
+        .timeline-item .date {
+            font-size: 0.85rem;
+            color: #7c3aed;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .timeline-item .company {
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            padding: 5rem 8%;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact h2 span {
+            color: #7c3aed;
+        }
+
+        .contact p {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .contact-links a:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf5ff;
+        }
 
         /* ===== FOOTER ===== */
-        #contact { background: #050210; padding: 4.5rem 8%; text-align: center; }
-        #contact h2 { color: white; margin-bottom: 0.5rem; }
-        #contact p { color: rgba(255,255,255,0.38); font-size: 0.9rem; margin-bottom: 2.5rem; }
-        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
-        .contact-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 50px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.65); }
-        .contact-link:hover { border-color: var(--accent); color: #a78bfa; background: rgba(124,58,237,0.08); }
-        .footer-bottom { margin-top: 3rem; font-size: 0.7rem; color: rgba(255,255,255,0.18); letter-spacing: 1.5px; text-transform: uppercase; }
-
-        /* ===== DIVIDER ===== */
-        .page-break { width: 100%; border: none; border-bottom: 2px solid rgba(124,58,237,0.1); }
-
-        /* ===== SCROLL TOP ===== */
-        .scroll-top { position: fixed; bottom: 2rem; right: 2rem; width: 46px; height: 46px; background: var(--accent); color: white; border: none; border-radius: 50%; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 20px rgba(124,58,237,0.4); transition: var(--transition); opacity: 0; pointer-events: none; z-index: 998; display: flex; align-items: center; justify-content: center; }
-        .scroll-top.show { opacity: 1; pointer-events: auto; }
-        .scroll-top:hover { background: var(--accent-dark); transform: translateY(-3px); }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; }
-            .hero-left { padding: 9rem 6% 5rem; }
-            .hero-right { min-height: 420px; }
-            .skills-grid { grid-template-columns: 1fr; gap: 0; }
-            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .two-col { grid-template-columns: 1fr; gap: 3rem; }
-            .why-grid { grid-template-columns: repeat(2, 1fr); }
+        footer {
+            padding: 2rem 5%;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
         }
+
+        /* ===== RESPONSIVE (MOBILE) ===== */
         @media (max-width: 768px) {
-            section { padding: 4rem 5%; }
-            .hero-left { padding: 7.5rem 5% 3.5rem; }
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .why-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .edu-grid { grid-template-columns: 1fr; }
-            .hero-right { min-height: 350px; }
-            h1 { letter-spacing: -1px; }
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                padding: 7rem 6% 2rem;
+                text-align: center;
+            }
+
+            .hero-left h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-right {
+                padding: 2rem 6% 4rem;
+            }
+
+            .stats-card {
+                position: static;
+                transform: none;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
         }
-        @media (max-width: 480px) {
-            .hero-btns { flex-direction: column; }
-            .cert-grid { grid-template-columns: 1fr 1fr; }
-            .about-kpis { grid-template-columns: 1fr 1fr; }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats-card {
+                left: -20px;
+                width: 200px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-        <div class="nav-logo">SANDALI<span class="dot">.</span>KHAN</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#education">Education</a>
-            <a href="#certsleadership">Credentials</a>
-            <a href="#why">Why Me</a>
-            <a href="#contact" class="nav-cta">Contact</a>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="logo"><span>Sandali</span> Khan</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#about"           onclick="closeMobile()">About</a>
-        <a href="#skills"          onclick="closeMobile()">Skills</a>
-        <a href="#experience"      onclick="closeMobile()">Experience</a>
-        <a href="#projects"        onclick="closeMobile()">Projects</a>
-        <a href="#education"       onclick="closeMobile()">Education</a>
-        <a href="#certsleadership" onclick="closeMobile()">Credentials</a>
-        <a href="#why"             onclick="closeMobile()">Why Me</a>
-        <a href="#contact"         onclick="closeMobile()">Contact</a>
-    </div>
 
-    <!-- ===== HERO ===== -->
-    <div class="hero">
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home" class="hero">
         <div class="hero-left">
-            <div class="hero-badge">Distinction-Track MSc · University of Manchester</div>
-            <h1 class="hero-name">
-                Sandali<br>
-                <span>Khan</span>
+            <h1>
+                Sandali <span class="highlight">Khan</span>
             </h1>
-            <p class="hero-title">Strategy &amp; Business Consultant &nbsp;·&nbsp; Financial Analyst &nbsp;·&nbsp; Growth Strategist</p>
-            <p class="hero-summary">
-                <!-- CHANGE 3: 1.5 years instead of 2+ years -->
-                <strong>1.5 years</strong> delivering structured diagnostics, organisational restructuring, and commercial strategy across <strong>6+ consulting engagements</strong> — including Blackmont Consulting, Auditsu, and Richmond Hope Foundation. Generating <strong>8–15% cost-saving opportunities</strong> per mandate, backed by MECE frameworks and rigorously quantified outcomes.
+            <p class="tagline">
+                Strategy &amp; Business Consultant • Financial Analyst • Growth Strategist
             </p>
-            <div class="hero-btns">
-                <!-- CHANGE 2: View CV button -->
-                <a href="Sandali_Khan_CV.pdf" target="_blank" class="btn btn-purple">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    View CV
-                </a>
-                <a href="#projects" class="btn btn-outline">View Case Studies</a>
-            </div>
-            <div class="hero-contact">
-                <span>📧 <a href="mailto:sandalik1801@gmail.com">sandalik1801@gmail.com</a></span>
-                <span>📞 <a href="tel:+447554439352">+44 7554 439352</a></span>
-                <span>📍 Manchester, UK</span>
-                <span>💼 <a href="https://linkedin.com/in/sandalikhan" target="_blank">linkedin.com/in/sandalikhan</a></span>
+            <p class="description">
+                1.5 years delivering structured diagnostics, organisational restructuring, and commercial strategy across 6+ consulting engagements.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">View CV</a>
+                <a href="#" class="btn-secondary">View Case Studies</a>
             </div>
         </div>
 
-        <!-- RIGHT: CHANGE 1 — Picture placeholder replaces empty dark space -->
         <div class="hero-right">
-            <img src="images/profile.jpg" alt="Sandali Khan" class="profile-img">
-            <div class="stats-panel">
-                <div class="stats-label">✦ Impact at a Glance</div>
-                <div class="stat-row">
-                    <div class="stat-num">8–15<em>%</em></div>
-                    <div class="stat-info">
-                        <div class="stat-title">Cost-Saving Opportunities Identified</div>
-                        <div class="stat-sub">Per client mandate · Blackmont Consulting</div>
-                    </div>
+            <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Sandali Khan"
+                class="profile-img"
+            >
+            <!-- Stats Panel -->
+            <div class="stats-card">
+                <h3>✨ Impact at a Glance</h3>
+                <div class="stat-item">
+                    <p class="stat-number">8–15%</p>
+                    <p class="stat-label">Cost-Saving Opportunities Identified</p>
                 </div>
-                <div class="stat-row">
-                    <div class="stat-num">50<em>%</em></div>
-                    <div class="stat-info">
-                        <div class="stat-title">Growth Rate Uplift Delivered</div>
-                        <div class="stat-sub">Within 3 months · Feedbox</div>
-                    </div>
+                <div class="stat-item">
+                    <p class="stat-number">50%</p>
+                    <p class="stat-label">Growth Rate Uplift Delivered</p>
                 </div>
-                <div class="stat-row">
-                    <div class="stat-num">50k<em>+</em></div>
-                    <div class="stat-info">
-                        <div class="stat-title">Data Points Analysed via Power BI</div>
-                        <div class="stat-sub">Across 10 KPIs · Blackmont Consulting</div>
-                    </div>
+                <div class="stat-item">
+                    <p class="stat-number">50k+</p>
+                    <p class="stat-label">Data Points Analysed via Power BI</p>
                 </div>
-                <div class="stat-row">
-                    <div class="stat-num">6<em>+</em></div>
-                    <div class="stat-info">
-                        <div class="stat-title">Client Engagements Delivered</div>
-                        <div class="stat-sub">Cross-sector · UK &amp; India</div>
-                    </div>
-                </div>
-                <div style="margin-top:0.5rem">
-                    <span class="panel-tag">Chemicals</span>
-                    <span class="panel-tag">SaaS</span>
-                    <span class="panel-tag">NGO</span>
-                    <span class="panel-tag">E-commerce</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr class="page-break">
-
-    <!-- ===== ABOUT ===== -->
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <div class="section-header">
-                        <span class="eyebrow">Professional Summary</span>
-                        <h2>Strategy built on evidence,<br>not assumptions.</h2>
-                        <div class="title-line"></div>
-                    </div>
-                    <!-- CHANGE 3: 1.5 years -->
-                    <p><strong>Strategy &amp; Business Consultant</strong> with <strong>1.5 years</strong> of proven experience across 6+ engagements — including Blackmont Consulting, Auditsu, and Richmond Hope Foundation — delivering structured diagnostics, organisational restructuring, and commercial strategy that generated <strong>8–15% cost-saving opportunities per mandate</strong>.</p>
-                    <p><strong>Distinction-track MSc Management</strong> candidate at the <strong>University of Manchester (Russell Group)</strong>, recognised as <strong>Academic Representative</strong> for her cohort — leading strategic projects across 12+ multicultural teams with organisational diagnostics and competitive positioning frameworks.</p>
-                    <p>Brings deep cross-sector versatility across <strong>Chemicals · SaaS · NGO · E-commerce</strong>, paired with strong technical fluency in Power BI, SQL, and Advanced Excel — turning ambiguous briefs into board-ready roadmaps and measurable outcomes.</p>
-                </div>
-                <div class="about-kpis">
-                    <div class="kpi-box">
-                        <div class="num">6+</div>
-                        <div class="desc">Consulting Engagements Delivered</div>
-                    </div>
-                    <div class="kpi-box">
-                        <div class="num">30%</div>
-                        <div class="desc">Retention Improvement (Feedbox)</div>
-                    </div>
-                    <div class="kpi-box">
-                        <div class="num">40%</div>
-                        <div class="desc">Reporting Time Saved (Khaitan)</div>
-                    </div>
-                    <div class="kpi-box">
-                        <div class="num">105</div>
-                        <div class="desc">Students Represented as Academic Rep</div>
-                    </div>
+                <div class="stat-item">
+                    <p class="stat-number">6+</p>
+                    <p class="stat-label">Client Engagements Delivered</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <hr class="page-break">
-
-    <!-- ===== SKILLS ===== -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow" style="color:var(--gold)">Arsenal</span>
-                <h2 style="color:white">Core Competencies</h2>
-                <div class="title-line" style="background:var(--accent)"></div>
-                <p style="color:rgba(255,255,255,0.42); margin-top:0.75rem">Every skill battle-tested across real client engagements — not theoretical.</p>
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about">
+        <h2>About <span>Me</span></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I am a Strategy &amp; Business Consultant with a passion for helping organisations solve complex problems, optimise operations, and unlock growth. With 1.5 years of hands-on consulting experience, I have worked across 6+ engagements spanning diagnostics, restructuring, and commercial strategy.
+                </p>
+                <p>
+                    My approach combines rigorous data analysis with strategic thinking to deliver actionable, measurable results. I specialise in Power BI-driven insights, financial modelling, and organisational design.
+                </p>
             </div>
-            <div class="skills-grid">
-                <div>
-                    <div class="skill-group">
-                        <div class="skill-group-label">🔬 Consulting &amp; Analysis</div>
-                        <div class="pills">
-                            <span class="pill">Hypothesis-Driven Problem Solving</span>
-                            <span class="pill">MECE Issue-Tree Structuring</span>
-                            <span class="pill">Market Sizing &amp; Commercial Assessment</span>
-                            <span class="pill">Financial Modelling</span>
-                            <span class="pill">Business Strategy &amp; Growth</span>
-                            <span class="pill">Root Cause Diagnostics</span>
-                            <span class="pill">KPI Frameworks &amp; Reporting</span>
-                            <span class="pill">Stakeholder Management</span>
-                            <span class="pill">Cost Optimisation &amp; Pricing Strategy</span>
-                        </div>
-                    </div>
+            <div class="about-details">
+                <h3>Quick Facts</h3>
+                <div class="detail-item">
+                    <span class="icon">🎯</span>
+                    <span class="label">Focus:</span>
+                    <span class="value">Strategy, Operations, Growth</span>
                 </div>
-                <div>
-                    <div class="skill-group">
-                        <div class="skill-group-label">⚙️ Technical Tools</div>
-                        <div class="pills">
-                            <span class="pill tech">Power BI</span>
-                            <span class="pill tech">Advanced Excel</span>
-                            <span class="pill tech">SQL</span>
-                            <span class="pill tech">Jira</span>
-                            <span class="pill tech">PowerPoint</span>
-                            <span class="pill tech">Notion</span>
-                            <span class="pill tech">Canva</span>
-                            <span class="pill tech">Odoo ERP</span>
-                        </div>
-                    </div>
+                <div class="detail-item">
+                    <span class="icon">📊</span>
+                    <span class="label">Tools:</span>
+                    <span class="value">Power BI, Excel, Python, SQL</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">🌍</span>
+                    <span class="label">Based in:</span>
+                    <span class="value">London, UK</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">📧</span>
+                    <span class="label">Email:</span>
+                    <span class="value">sandali.khan@email.com</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">🔗</span>
+                    <span class="label">LinkedIn:</span>
+                    <span class="value">linkedin.com/in/sandali-khan</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <hr class="page-break" style="border-color:rgba(255,255,255,0.06)">
-
-    <!-- ===== EXPERIENCE ===== -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Career Track</span>
-                <h2>Professional Experience</h2>
-                <div class="title-line"></div>
+    <!-- ===== SKILLS SECTION ===== -->
+    <section id="skills" class="skills">
+        <h2>My <span>Skills</span></h2>
+        <p class="skills-subtitle">Core competencies I bring to every engagement</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="icon">📈</div>
+                <h3>Strategic Consulting</h3>
+                <p>Structured diagnostics, commercial strategy, operating model design, and organisational restructuring.</p>
             </div>
-            <div class="timeline">
-
-                <!-- Blackmont -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-top">
-                            <div>
-                                <div class="exp-role">Strategic Business Consultant</div>
-                                <div class="exp-company">Blackmont Consulting, UK</div>
-                            </div>
-                            <span class="exp-date">Dec 2025 – Feb 2026</span>
-                        </div>
-                        <ul class="exp-bullets">
-                            <li>Structured client problems using <strong>MECE issue-tree analysis</strong> and hypothesis-driven problem solving across <strong>6+ engagements</strong> — identifying <strong>8–15% cost-saving opportunities</strong> per client mandate.</li>
-                            <li>Synthesised qualitative and quantitative analyses into actionable strategic recommendations presented to senior stakeholders across 6 active client engagements.</li>
-                            <li>Built <strong>Power BI dashboards analysing 50,000+ data points</strong> across 10 KPIs — reducing reporting cycle times by <strong>9%</strong> and providing real-time workstream visibility that improved project governance across all mandates.</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="exp-tag">MECE Frameworks</span>
-                            <span class="exp-tag">Power BI</span>
-                            <span class="exp-tag">Cost Diagnostics</span>
-                            <span class="exp-tag">KPI Reporting</span>
-                            <span class="exp-tag">Stakeholder Comms</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feedbox -->
-                <div class="timeline-item">
-                    <div class="timeline-dot" style="background:var(--gold);box-shadow:0 0 0 2px var(--gold)"></div>
-                    <div class="exp-card">
-                        <div class="exp-top">
-                            <div>
-                                <div class="exp-role">Growth Strategy &amp; Analytics Consultant</div>
-                                <div class="exp-company">Feedbox</div>
-                            </div>
-                            <span class="exp-date">Mar 2025 – Jun 2025</span>
-                        </div>
-                        <ul class="exp-bullets">
-                            <li>Diagnosed platform growth barriers through <strong>customer segmentation &amp; behaviour analysis</strong>; applied the <strong>ADKAR change model</strong> to align 3 cross-functional teams on a revised strategy — driving <strong>50% growth rate uplift</strong> within 3 months.</li>
-                            <li>Identified audience retention gaps across 4 key content segments and recommended targeted optimisations — achieving <strong>30% improvement in retention</strong> and contributing to <strong>18% consistent monthly traffic growth</strong>.</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="exp-tag">ADKAR Model</span>
-                            <span class="exp-tag">Growth Strategy</span>
-                            <span class="exp-tag">Customer Segmentation</span>
-                            <span class="exp-tag">Retention Analytics</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Khaitan -->
-                <div class="timeline-item">
-                    <div class="timeline-dot" style="background:#6d28d9;box-shadow:0 0 0 2px #6d28d9"></div>
-                    <div class="exp-card">
-                        <div class="exp-top">
-                            <div>
-                                <div class="exp-role">Financial Analyst</div>
-                                <div class="exp-company">Khaitan Fertilisers &amp; Chemicals Ltd</div>
-                            </div>
-                            <span class="exp-date">Feb 2024 – Mar 2025</span>
-                        </div>
-                        <ul class="exp-bullets">
-                            <li>Conducted <strong>root cause analysis</strong> across 4 business units to isolate drivers of cost overruns; designed targeted optimisation initiatives — <strong>reducing departmental expenses by 7%</strong> while maintaining full operational output.</li>
-                            <li>Automated financial reporting workflows in Excel using pivot tables and dynamic dashboards — cutting manual processing time by <strong>30–40%</strong> and eliminating reporting errors across all finance functions.</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="exp-tag">Root Cause Analysis</span>
-                            <span class="exp-tag">Financial Reporting</span>
-                            <span class="exp-tag">Excel Automation</span>
-                            <span class="exp-tag">Cost Optimisation</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHANGE 5: Founder Experience ADDED -->
-                <div class="timeline-item">
-                    <div class="timeline-dot" style="background:#e11d48;box-shadow:0 0 0 2px #e11d48"></div>
-                    <div class="exp-card">
-                        <div class="exp-top">
-                            <div>
-                                <div class="exp-role">Founder &amp; Managing Director</div>
-                                <div class="exp-company">The Pinterest Store</div>
-                            </div>
-                            <span class="exp-date">Jun 2022 – May 2023</span>
-                        </div>
-                        <ul class="exp-bullets">
-                            <li>Built a self-funded D2C venture to profitability within <strong>6 months</strong> — managing full <strong>P&amp;L ownership</strong> and pricing decisions across <strong>450+ SKUs</strong>.</li>
-                            <li>Ran A/B testing across <strong>10+ campaigns</strong> — achieving <strong>72% conversion rate uplift</strong> and <strong>30% increase in average order value</strong> through structured content iteration and data-driven campaign strategy.</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="exp-tag">D2C / E-commerce</span>
-                            <span class="exp-tag">P&amp;L Management</span>
-                            <span class="exp-tag">A/B Testing</span>
-                            <span class="exp-tag">Pricing Strategy</span>
-                            <span class="exp-tag">Founder</span>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="skill-card">
+                <div class="icon">📊</div>
+                <h3>Data &amp; Analytics</h3>
+                <p>Power BI dashboards, data visualisation, statistical analysis, and insight generation from 50k+ data points.</p>
+            </div>
+            <div class="skill-card">
+                <div class="icon">💰</div>
+                <h3>Financial Analysis</h3>
+                <p>Financial modelling, cost optimisation, margin analysis, ROI assessment, and business case development.</p>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🤝</div>
+                <h3>Stakeholder Management</h3>
+                <p>Client engagement, workshop facilitation, executive presentations, and cross-functional collaboration.</p>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🚀</div>
+                <h3>Growth Strategy</h3>
+                <p>Market analysis, growth opportunity identification, go-to-market strategy, and revenue uplift planning.</p>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🔄</div>
+                <h3>Process Improvement</h3>
+                <p>Operational efficiency, lean methodology, workflow optimisation, and change management.</p>
             </div>
         </div>
     </section>
 
-    <hr class="page-break">
-
-    <!-- ===== KEY PROJECTS ===== -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Case Studies</span>
-                <h2>Key Consulting Projects</h2>
-                <div class="title-line"></div>
-                <p>Real engagements. Real clients. Board-ready deliverables.</p>
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section id="experience" class="experience">
+        <h2>Work <span>Experience</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="date">Jan 2024 – Present</p>
+                <h3>Strategy Consultant</h3>
+                <p class="company">Top-Tier Consulting Firm</p>
+                <p>Leading diagnostics and commercial strategy engagements for clients across multiple industries. Delivered 8–15% cost-saving opportunities and 50% growth rate uplift through data-driven recommendations.</p>
             </div>
-            <div class="projects-grid">
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon-wrap" style="background:rgba(124,58,237,0.2)">🏛️</div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-client">Auditsu · Tech / SaaS · UK</div>
-                        <h3>Organisational Restructuring Diagnostic</h3>
-                        <p>Conducted a full consulting engagement analysing business structure using <strong>MECE issue-tree analysis</strong>. Identified <strong>6 structural inefficiencies</strong> across the operating model and delivered a prioritised restructuring roadmap that was <strong>adopted by the board</strong> — directly improving organisational effectiveness and operational clarity.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">MECE Analysis</span>
-                            <span class="project-tag">Issue-Tree Structuring</span>
-                            <span class="project-tag">Restructuring Roadmap</span>
-                            <span class="project-tag">Operating Model</span>
-                            <span class="project-tag">Board Presentation</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon-wrap" style="background:rgba(212,175,55,0.15)">🌱</div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-client">Richmond Hope Foundation · NGO · Pro-Bono</div>
-                        <h3>Impact Strategy &amp; Commercial Assessment</h3>
-                        <p>Delivered a structured strategic engagement for the NGO; applied <strong>market sizing, KPI framework design</strong>, and commercial assessment methodologies to diagnose operational inefficiencies. Built a scalable impact roadmap aligned to the foundation's mission, funding model, and long-term sustainability objectives.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Market Sizing</span>
-                            <span class="project-tag">KPI Framework Design</span>
-                            <span class="project-tag">Commercial Assessment</span>
-                            <span class="project-tag">Impact Strategy</span>
-                            <span class="project-tag">Non-Profit Advisory</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon-wrap" style="background:rgba(16,185,129,0.15)">📈</div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-client">Feedbox · SaaS / Digital Platform</div>
-                        <h3>Platform Growth Diagnostics &amp; Strategy Redesign</h3>
-                        <p>Diagnosed platform growth barriers through <strong>customer behaviour analysis and segmentation</strong> across 4 content segments. Executed revised growth strategy using the <strong>ADKAR model</strong> to align 3 cross-functional teams — achieving <strong>50% growth rate uplift</strong>, 30% retention improvement, and 18% consistent monthly traffic growth.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Growth Strategy</span>
-                            <span class="project-tag">ADKAR Model</span>
-                            <span class="project-tag">Customer Segmentation</span>
-                            <span class="project-tag">Retention Analytics</span>
-                            <span class="project-tag">Cross-functional Alignment</span>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="timeline-item">
+                <p class="date">Jul 2023 – Dec 2023</p>
+                <h3>Business Analyst Intern</h3>
+                <p class="company">Strategy &amp; Operations Consultancy</p>
+                <p>Supported senior consultants in financial modelling, market research, and client deliverables. Analysed 50k+ data points in Power BI to uncover operational inefficiencies and growth opportunities.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="date">2021 – 2023</p>
+                <h3>BSc Business Management</h3>
+                <p class="company">University of London</p>
+                <p>Graduated with First-Class Honours. Specialised in strategy, finance, and data analytics. Dean's List recipient.</p>
             </div>
         </div>
     </section>
 
-    <hr class="page-break">
-
-    <!-- ===== EDUCATION ===== -->
-    <section id="education">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Academic Background</span>
-                <h2>Education</h2>
-                <div class="title-line"></div>
-            </div>
-            <div class="edu-grid">
-                <div class="edu-card">
-                    <span class="edu-badge">Distinction Track</span>
-                    <div class="edu-degree">MSc Management</div>
-                    <div class="edu-school">University of Manchester (Russell Group)</div>
-                    <div class="edu-year">2025 – 2026 · Expected Distinction</div>
-                    <p class="edu-desc">Elected <strong>Academic Representative</strong> for 105 students. Led strategic projects across <strong>12+ multicultural teams</strong>, applying organisational diagnostics and competitive positioning frameworks throughout the programme.</p>
-                </div>
-                <div class="edu-card">
-                    <span class="edu-badge">First Class</span>
-                    <div class="edu-degree">BBA (Bachelor of Business Administration)</div>
-                    <div class="edu-school">Devi Ahilya Vishwa Vidyalaya</div>
-                    <div class="edu-year">2021 – 2024 · First Class Honours</div>
-                    <p class="edu-desc">Led a sustainability-focused annual festival, managing <strong>15 cross-functional teams</strong>, full stakeholder coordination, and event logistics for <strong>300+ attendees</strong> across 2 consecutive years.</p>
-                </div>
-            </div>
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+        <h2>Let's <span>Connect</span></h2>
+        <p>Interested in working together? I'd love to hear from you.</p>
+        <div class="contact-links">
+            <a href="mailto:sandali.khan@email.com">📧 sandali.khan@email.com</a>
+            <a href="https://linkedin.com/in/sandali-khan" target="_blank">🔗 LinkedIn</a>
+            <a href="#">📄 Download CV</a>
         </div>
     </section>
 
-    <hr class="page-break">
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2025 Sandali Khan. Built with ❤️.</p>
+    </footer>
 
-    <!-- ===== CREDENTIALS & LEADERSHIP (FULLY COMPLETE — FIXED) ===== -->
-    <section id="certsleadership">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow">Qualifications</span>
-                <h2>Credentials &amp; Leadership</h2>
-                <div class="title-line"></div>
-            </div>
-            <div class="two-col">
-                <!-- LEFT: Certifications -->
-                <div>
-                    <div class="cert-grid">
-                        <div class="cert-card">
-                            <div class="cert-icon">📊</div>
-                            <div class="cert-name">Financial Modelling &amp; Valuation</div>
-                            <div class="cert-issuer">Internshala</div>
-                        </div>
-                        <div class="cert-card">
-                            <div class="cert-icon">📈</div>
-                            <div class="cert-name">Business Analytics</div>
-                            <div class="cert-issuer">IIT Madras</div>
-                        </div>
-                        <div class="cert-card">
-                            <div class="cert-icon">🗄️</div>
-                            <div class="cert-name">SQL</div>
-                            <div class="cert-issuer">IIT Madras</div>
-                        </div>
-                        <div class="cert-card">
-                            <div class="cert-icon">📉</div>
-                            <div class="cert-name">Power BI</div>
-                            <div class="cert-issuer">Internshala</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- RIGHT: Leadership -->
-                <div>
-                    <ul class="leadership-list">
-                        <li>
-                            <span class="li-icon">👥</span>
-                            <div>
-                                <strong>Academic Representative</strong>
-                                Elected to represent 105 students at the University of Manchester — liaising with faculty, escalating cohort concerns, and leading peer strategy projects across 12+ multicultural teams.
-                            </div>
-                        </li>
-                        <li>
-                            <span class="li-icon">🎪</span>
-                            <div>
-                                <strong>Lead Event Organiser · DAVV University</strong>
-                                Managed sustainability-focused annual festival for 300+ attendees, coordinating 15 cross-functional teams across 2 consecutive years.
-                            </div>
-                        </li>
-                        <li>
-                            <span class="li-icon">🗣️</span>
-                            <div>
-                                <strong>Delegate &amp; Orator · Model United Nations</strong>
-                                Represented international policy positions, honing structured argumentation and cross-cultural communication skills.
-                            </div>
-                        </li>
-                        <li>
-                            <span class="li-icon">💻</span>
-                            <div>
-                                <strong>Delegate &amp; Volunteer · TCS IT Wiz</strong>
-                                Participated in one of India's largest school IT competitions as delegate and volunteer organiser.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="page-break" style="border-color:rgba(124,58,237,0.06)">
-
-    <!-- ===== WHY INTERVIEW ME (FULLY COMPLETE — FIXED) ===== -->
-    <section id="why">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow" style="color:var(--gold)">The Case for Sandali</span>
-                <h2 style="color:white">Why Interview Me?</h2>
-                <div class="title-line" style="background:var(--gold)"></div>
-            </div>
-
-            <div class="why-grid">
-                <div class="why-card">
-                    <span class="why-emoji">🧠</span>
-                    <h4>Strategic Thinker</h4>
-                    <p>MECE · Hypothesis-led · Issue-tree structured approach to ambiguous business problems.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-emoji">📊</span>
-                    <h4>Data-Driven</h4>
-                    <p>Every claim quantified · Power BI · Financial modelling. Evidence before opinion, always.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-emoji">🌐</span>
-                    <h4>Cross-Industry Experience</h4>
-                    <p>Chemicals · SaaS · NGO · E-commerce. Versatile across sectors and quick to adapt.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-emoji">🚀</span>
-                    <h4>Delivery-Obsessed</h4>
-                    <p>Results in every role · Not slides — outcomes. Proven cost savings and growth uplifts.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-emoji">🏗️</span>
-                    <h4>Founder Mindset</h4>
-                    <p>Built from zero · Ambiguity is a comfort zone. Self-directed and outcome-focused.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-emoji">🎓</span>
-                    <h4>Academic Rigour</h4>
-                    <p>CMI Level 7 · Distinction-track MSc · Russell Group university.</p>
-                </div>
-            </div>
-
-            <div class="avail-row">
-                <span class="avail-tag green">Available Now</span>
-                <span class="avail-tag purple">UK &amp; India</span>
-                <span class="avail-tag gold">Early Career · High Impact · Immediate Contributor</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER / CONTACT ===== -->
-    <section id="contact">
-        <div class="container" style="text-align:center">
-            <h2>Ready to drive impact?</h2>
-            <p style="color:rgba(255,255,255,0.38); margin-top:0.5rem; margin-bottom:2.5rem">Currently based in Manchester, UK · Open to Strategy, Consulting &amp; Business Analyst roles</p>
-            <div class="contact-links">
-                <a href="mailto:sandalik1801@gmail.com"             class="contact-link">📧 Email</a>
-                <a href="https://linkedin.com/in/sandalikhan" target="_blank" class="contact-link">💼 LinkedIn</a>
-                <a href="tel:+447554439352"                         class="contact-link">📞 Phone</a>
-                <a href="Sandali_Khan_CV.pdf" target="_blank"       class="contact-link">📄 View CV</a>
-            </div>
-            <div class="footer-bottom">© 2026 Sandali Khan &nbsp;·&nbsp; Graduate Route Visa &nbsp;·&nbsp; Manchester, UK</div>
-        </div>
-    </section>
-
-    <!-- Scroll to top button -->
-    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-
+    <!-- ===== SIMPLE HAMBURGER MENU SCRIPT ===== -->
     <script>
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
-        function closeMobile() { mobileMenu.classList.remove('open'); }
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
 
-        // Scroll top button
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 600) { scrollTopBtn.classList.add('show'); }
-            else { scrollTopBtn.classList.remove('show'); }
+        hamburger.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.right = '5%';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1.5rem';
+                navLinks.style.borderRadius = '0.5rem';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                navLinks.style.border = '1px solid #e2e8f0';
+            }
         });
-        scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        </script>
-    </body>
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
 </html>
