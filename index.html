@@ -116,9 +116,9 @@
         .hero-right {
             background: var(--dark);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            align-items: center; /* Vertical center */
+            justify-content: flex-start; /* Move stats to the left */
+            padding: 0 5%; /* Add space from the edge */
             position: relative;
             overflow: hidden;
         }
@@ -129,7 +129,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            transition: var(--transition);
+            filter: none !important; /* Forces image to stay clear */
         }
         .profile-img.blurred {
             filter: blur(8px);
@@ -138,6 +138,15 @@
         .stats-panel {
             position: relative;
             z-index: 2;
+            width: 100%;
+            max-width: 320px; /* Slightly slimmer */
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4); /* Darker transparent */
+            backdrop-filter: blur(12px); /* Only blurs the glass card background, not your face */
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         .hero-right::before {
             content: '';
@@ -969,18 +978,6 @@
             else { scrollTopBtn.classList.remove('show'); }
         });
         scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-            // Image blur on stats panel hover
-            const profileImg = document.querySelector('.profile-img');
-            const statsPanel = document.querySelector('.stats-panel');
-        
-            if (profileImg && statsPanel) {
-                statsPanel.addEventListener('mouseenter', () => {
-                    profileImg.classList.add('blurred');
-                });
-                statsPanel.addEventListener('mouseleave', () => {
-                    profileImg.classList.remove('blurred');
-                });
-            }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
